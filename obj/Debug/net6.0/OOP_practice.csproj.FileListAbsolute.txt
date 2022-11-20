@@ -1,0 +1,17 @@
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\OOP_practice.exe
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\OOP_practice.deps.json
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\OOP_practice.runtimeconfig.json
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\OOP_practice.dll
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\OOP_practice.pdb
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.csproj.AssemblyReference.cache
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.AssemblyInfoInputs.cache
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.AssemblyInfo.cs
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.csproj.CoreCompileInputs.cache
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.dll
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\refint\OOP_practice.dll
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.pdb
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.genruntimeconfig.cache
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\ref\OOP_practice.dll
+C:\Users\funn1\source\repos\OOP_practice\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\funn1\source\repos\OOP_practice\obj\Debug\net6.0\OOP_practice.csproj.CopyComplete
