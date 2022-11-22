@@ -110,16 +110,15 @@ const string clientsPath = @"Employee.json";
 
 
 
-A a = new A();
-B b = new B();
-Console.WriteLine("b.M()");
-b.M();
-a = new B();
-Console.WriteLine("a= new B(); a.M()");
-a.M();
 
 
-//clients = LoadClientsFromJson();
+clients = LoadClientsFromJson();
+
+Consultant consultant = new Consultant("Tom", 24, clients);
+Manager manager = new Manager("Tom", 24, clients);
+
+manager.PrintAllClients();
+
 //foreach (var client in clients)
 //{
 //    Console.WriteLine($"Name - {client.Name}\n Surname - {client.Surname}\n" +
@@ -128,7 +127,7 @@ a.M();
 //}
 
 
-
+#region Create and load clients dataBase
 //-------------------------------------------------------------------------------------------
 void CreateJson()
 {
@@ -183,3 +182,4 @@ void ReadAllClients()
     }
 
 }
+#endregion

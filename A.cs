@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace OOP_practice
 {
+
+    //Testing inheritance issues
     public class A
     {
+        public int props { get; set; }
         public void M()
         {
             Console.WriteLine("Method by A class " + this.GetType().ToString());

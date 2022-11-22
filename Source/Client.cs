@@ -6,42 +6,53 @@ using System.Threading.Tasks;
 
 namespace OOP_practice.Source
 {
-    internal class Client
+    public class Client
     {
         string _name;
-        public string Name { get { return _name; } }
+        public string Name {
+            get { return _name;} 
+            set
+            {
+                _name = value;
+            } 
+        }
 
         string _surname;
-        public string Surname { get { return _surname; } }
+        public string Surname {
+            get { return _surname; }
+            set
+            {
+                _surname = value;
+            }
+        }
 
         string _lastName;
-        public string LastName { get { return _lastName; } }
+        public string LastName {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+            }
+        }
 
         string _passportData;
 
-        char[] separators;
+        
         public string PassportData {
             get
             {
-                string[] splittedPassport = _passportData.Split(separators);
-                return String.Join("*", splittedPassport);
+                return _passportData;
+            }
+            set
+            {
+                _passportData = value;
             }
         }
 
         string _phoneNumber;
         public string PhoneNumber { 
             get { return _phoneNumber; }
-            set 
-            {
-                if (value == null)
-                {
-                    Console.WriteLine("Phone number can't be null");
-                }
-                else
-                {
-                    _phoneNumber = value;
-                }
-            }
+            set { _phoneNumber = value; }
         }
 
         public Client(string name, string surname, string lastName, string passportData,
@@ -53,7 +64,7 @@ namespace OOP_practice.Source
             _passportData = passportData;
             _phoneNumber = phoneNumber;
 
-            separators = new char[]  { '0','1','2','3', '4','5', '6', '7', '8', '9', };
+            
         }
     }
 }
