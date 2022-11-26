@@ -107,17 +107,38 @@ using OOP_practice.Source;
 
 List<Client> clients = new List<Client>();
 const string clientsPath = @"Employee.json";
-
-
-
-
-
 clients = LoadClientsFromJson();
+string shutDownCommand = "";
 
-Consultant consultant = new Consultant("Tom", 24, clients);
-Manager manager = new Manager("Tom", 24, clients);
 
-manager.PrintAllClients();
+
+Console.WriteLine("Welcome to IS from 'A' Bank. To log in this IS. Please choose your role :\n1 - Consultant\n2 - Manager");
+
+
+while (shutDownCommand.ToLower() != "exit")
+{
+    Consultant worker;
+    string userRole = Console.ReadLine();
+    string correctUserRole = DeleteSpaceInStr(userRole);
+
+    while (true)
+    {
+        if (correctUserRole == "1" || correctUserRole == "2")
+        {
+            worker = CreateNewWorker(userRole);
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Your role selection isnt' correct. Please try again");
+        }
+    }
+
+
+   
+}
+
+//manager.PrintAllClients();
 
 //foreach (var client in clients)
 //{
@@ -182,4 +203,82 @@ void ReadAllClients()
     }
 
 }
+
+#endregion
+#region IS work methods
+
+string DeleteSpaceInStr(string baseStr)
+{
+    if (baseStr != null || baseStr != String.Empty)
+    {
+        string[] separatedStr = baseStr.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        string newStr = String.Join("", separatedStr);
+        return newStr;
+    }
+
+    return String.Empty;
+}
+
+
+bool isWorkerDataCorrect(string userNewName, string userAgeStr, ref byte userAge)
+{
+
+    if ((userNewName != String.Empty || userAgeStr != String.Empty) && (byte.TryParse(userAgeStr, out userAge) && userAge >= 18 && userAge <= 65))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void EntryWorkerData(out string workerName, out byte workerAge)
+{
+    bool flag = true;
+
+    workerName = "";
+    string workerAgeStr = "";
+    workerAge = 0;
+
+    while (flag)
+    {
+        Console.WriteLine("Entry Name");
+        workerName = DeleteSpaceInStr(Console.ReadLine());
+
+        Console.WriteLine("Entry Age");
+        workerAgeStr = DeleteSpaceInStr(Console.ReadLine());
+
+        if (isWorkerDataCorrect(workerName, workerAgeStr, ref workerAge))
+        {
+            flag = false;
+        }
+        else Console.WriteLine("Your input data is null or empty, try again:\nName - entry a not null str\nAge - a random number between 18 and 65");
+    }
+}
+
+Consultant CreateNewWorker(string userRole)
+{
+    Consultant worker;
+
+    string workerName;
+    byte workerAge;
+
+    EntryWorkerData(out workerName, out workerAge);
+    if (userRole == "1")
+    {
+        worker = new Consultant(workerName, workerAge, clients);        
+    }
+    else
+    {
+        worker = new Manager(workerName, workerAge, clients);
+    }
+ 
+    return worker;
+}
+
+
+
+
+
 #endregion

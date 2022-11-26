@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace OOP_practice.Source
 {
-    public class Consultant
+    public class Consultant: IWorkWithClient
     {
         protected List<Client> clients;
 
         char[] separators;
-        
 
+        
         string _name;
-        public string? Name { get; set; }
+        public string Name { get { return _name; } set { _name = value; } }
 
         int _age;
-        public int Age { get; set; }
+        public byte Age { get; set; }
 
         public Consultant()
         {
@@ -27,19 +27,19 @@ namespace OOP_practice.Source
             separators = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', };
         }
 
-        public Consultant(string name, int age, List<Client> clients)
+        public Consultant(string _name, byte age, List<Client> clients)
         {
-            _name=name;
+            this._name=_name;
             _age = age;
             this.clients = clients;
             separators = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', };
 
         }
 
-        public void SetUpClientDB(List<Client> clients)
-        {
-            this.clients=clients;
-        }
+        //public void SetUpClientDB(List<Client> clients)
+        //{
+        //    this.clients=clients;
+        //}
 
         protected virtual string GetPassportData(int indexOfClient)
         {
@@ -73,7 +73,8 @@ namespace OOP_practice.Source
             return ($"Name - {clients[indexOfClient].Name}\nSurname - {clients[indexOfClient].Surname}\n" +
                $"LastName - {clients[indexOfClient].LastName}\nPassport - " +
                $"{GetPassportData(indexOfClient)}\n" +
-               $"phoneNumber - {clients[indexOfClient].PhoneNumber}");
+               $"phoneNumber - {clients[indexOfClient].PhoneNumber}\n" +
+               $"{clients[indexOfClient].GetChangeLog()}");
         }
 
         public void PrintAllClients()
@@ -83,6 +84,18 @@ namespace OOP_practice.Source
                 Console.WriteLine("\t" + i.ToString() + "\n" + GetInfoAboutClient(i)
                     + "\n--------------\n");
             }
+        }
+
+        public virtual bool ChangeClientInfo(int indexOfClient, string newData, string clientField = "PhoneNumber")
+        {
+            if (isNewClientInfoCorrect(newData))
+            {
+                string oldData = clients[indexOfClient].PhoneNumber;
+                clients[indexOfClient].PhoneNumber = newData;
+                clients[indexOfClient].SetChangeData(clientField,this,Changetype.Rewrite,oldData); 
+                return true;
+            } else return false;
+
         }
     }
 }

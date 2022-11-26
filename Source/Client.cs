@@ -8,6 +8,9 @@ namespace OOP_practice.Source
 {
     public class Client
     {
+
+        List<ChangeLog> _changeLog;
+
         string _name;
         public string Name {
             get { return _name;} 
@@ -55,6 +58,31 @@ namespace OOP_practice.Source
             set { _phoneNumber = value; }
         }
 
+        public void SetChangeData(string clientFieldName, IWorkWithClient workWithClient, Changetype changetype, string oldData)
+        {
+           _changeLog.Add(new ChangeLog(DateTime.Now, clientFieldName, oldData, workWithClient, changetype));
+
+        }
+
+        public string GetChangeLog()
+        {
+            string changeLog = "";
+            if (_changeLog != default(List<ChangeLog>))
+            {
+                
+                foreach (var note in _changeLog)
+                {
+                    changeLog += note.GetChangeLog();
+                }
+            }
+            else
+            {
+                changeLog = "ChangeLog is empty!";
+            }
+           
+            return changeLog;
+        }
+
         public Client(string name, string surname, string lastName, string passportData,
             string phoneNumber)
         {
@@ -63,6 +91,7 @@ namespace OOP_practice.Source
             _lastName = lastName;
             _passportData = passportData;
             _phoneNumber = phoneNumber;
+            _changeLog = new List<ChangeLog>();
 
             
         }
