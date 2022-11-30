@@ -27,7 +27,7 @@ namespace OOP_practice.Source
 
         public string GetChangeLog()
         {
-            return $"ChangeLog info:\n Date of Change client's info: {DateOfChange}\nChanged Property: {ChangedField}\n Old Data: {OldData}\n" +
+            return $"ChangeLog info:\nDate of Change client's info: {DateOfChange}\nChanged Property: {ChangedField}\nOld Data: {OldData}\n" +
                 $"Who made this Changes: {WhoMadeChanges.GetType().Name}\n" +
                 $"Type of changes: {ChangeType.ToString()}\n";
         }

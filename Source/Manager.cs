@@ -81,19 +81,17 @@ namespace OOP_practice.Source
             }
             else
             {
-                string[] splittedStr = newClientInfo.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                string tempStr = String.Join("", splittedStr);
-                if (tempStr != "")
-                {
-                    return true;
-                }
-                else
-                    return false;
+                return !String.IsNullOrWhiteSpace(newClientInfo);
             }
             
         }
 
-        
+        public override string WhatCanIDo()
+        {
+            return base.WhatCanIDo() + $"4 - Add new Client";
+        }
+
+
     }   
     
 }

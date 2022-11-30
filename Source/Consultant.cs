@@ -12,7 +12,8 @@ namespace OOP_practice.Source
 
         char[] separators;
 
-        
+        public byte CountClients => (byte)clients.Count;
+
         string _name;
         public string Name { get { return _name; } set { _name = value; } }
 
@@ -48,19 +49,25 @@ namespace OOP_practice.Source
             return String.Join("*", splittedPassport);
         }
 
-        public void ChangeClientNumber(string newNumber, int indexOfClient)
+        bool isStrContainsDigits(string strToCheck)
         {
-            if (isNewClientInfoCorrect(newNumber))
+            bool isStrContainsDigits = true;
+            foreach (char ch in strToCheck)
             {
-                clients[indexOfClient].PhoneNumber = newNumber;
+                if (!Char.IsDigit(ch))
+                {
+                    isStrContainsDigits = false;
+                    break;
+                }
             }
+            return isStrContainsDigits;
         }
 
         protected bool isNewClientInfoCorrect(string newNumber)
         {
-            string[] splittedStr = newNumber.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            string tempStr = String.Join("", splittedStr);
-            if (tempStr != "" && tempStr.Length == 10)
+            
+            if (!String.IsNullOrWhiteSpace(newNumber) && newNumber.Length == 10 
+                && isStrContainsDigits(newNumber))
             {
                 return true;
             }
@@ -96,6 +103,15 @@ namespace OOP_practice.Source
                 return true;
             } else return false;
 
+        }
+
+        public virtual string WhatCanIDo()
+        {
+            string description = $"User {this.GetType().Name} has the following abilities:\n" +
+                $"1 - Print the clients list\n" +
+                $"2 - Choose the client by index\n" +
+                $"3 - Edit client Info\n";
+            return description;
         }
     }
 }
