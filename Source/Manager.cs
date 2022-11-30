@@ -14,11 +14,24 @@ namespace OOP_practice.Source
 
         }
 
+        /// <summary>
+        /// return passport data for Manager
+        /// </summary>
+        /// <param name="indexOfClient"></param>
+        /// <returns></returns>
         protected override string GetPassportData(int indexOfClient)
         {
             return clients[indexOfClient].PassportData;
         }
 
+        /// <summary>
+        /// Change the client info by choosen parameter and new data. Returns true if rewrite is done
+        ///and false if something gone wrong
+        /// </summary>
+        /// <param name="indexOfClient"></param>
+        /// <param name="newData"></param>
+        /// <param name="clientField"></param>
+        /// <returns></returns>
         public override bool ChangeClientInfo(int indexOfClient, string newData, string clientField = "PhoneNumber")
         {
 
@@ -58,6 +71,15 @@ namespace OOP_practice.Source
             
         }
 
+        /// <summary>
+        /// Add new client by new data to the clientsDB. Returns string that represents the result
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Surname"></param>
+        /// <param name="LastName"></param>
+        /// <param name="PassportData"></param>
+        /// <param name="PhoneNumber"></param>
+        /// <returns></returns>
         public string AddNewClient(string Name, string Surname, string LastName, string PassportData,
             string PhoneNumber )
         {
@@ -73,6 +95,12 @@ namespace OOP_practice.Source
             }
         }
         
+        /// <summary>
+        /// check if incoming data is not empty or null or whitespace and contains in special cases only digits
+        /// </summary>
+        /// <param name="newClientInfo"></param>
+        /// <param name="clientField"></param>
+        /// <returns></returns>
         bool isNewClientInfoCorrect(string newClientInfo, string clientField="Name")
         {
             if (clientField == "PassportData" || clientField == "PhoneNumber")
@@ -86,6 +114,10 @@ namespace OOP_practice.Source
             
         }
 
+        /// <summary>
+        /// return string that represents what can do this worker
+        /// </summary>
+        /// <returns></returns>
         public override string WhatCanIDo()
         {
             return base.WhatCanIDo() + $"4 - Add new Client";

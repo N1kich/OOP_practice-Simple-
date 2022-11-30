@@ -37,11 +37,12 @@ namespace OOP_practice.Source
 
         }
 
-        //public void SetUpClientDB(List<Client> clients)
-        //{
-        //    this.clients=clients;
-        //}
 
+        /// <summary>
+        /// Get PassportData for Consultant. Replace passportData by *
+        /// </summary>
+        /// <param name="indexOfClient"></param>
+        /// <returns></returns>
         protected virtual string GetPassportData(int indexOfClient)
         {
             string passportData = clients[indexOfClient].PassportData;
@@ -49,6 +50,12 @@ namespace OOP_practice.Source
             return String.Join("*", splittedPassport);
         }
 
+
+        /// <summary>
+        /// check if str contains digits
+        /// </summary>
+        /// <param name="strToCheck"></param>
+        /// <returns></returns>
         bool isStrContainsDigits(string strToCheck)
         {
             bool isStrContainsDigits = true;
@@ -63,6 +70,11 @@ namespace OOP_practice.Source
             return isStrContainsDigits;
         }
 
+        /// <summary>
+        /// check if client info correct
+        /// </summary>
+        /// <param name="newNumber"></param>
+        /// <returns></returns>
         protected bool isNewClientInfoCorrect(string newNumber)
         {
             
@@ -75,6 +87,11 @@ namespace OOP_practice.Source
                 return false;
         }
 
+        /// <summary>
+        /// return str that represents all info about client by index
+        /// </summary>
+        /// <param name="indexOfClient"></param>
+        /// <returns></returns>
         public virtual string GetInfoAboutClient(int indexOfClient)
         {
             return ($"Name - {clients[indexOfClient].Name}\nSurname - {clients[indexOfClient].Surname}\n" +
@@ -84,6 +101,9 @@ namespace OOP_practice.Source
                $"{clients[indexOfClient].GetChangeLog()}");
         }
 
+        /// <summary>
+        /// print all clients from clientsDB
+        /// </summary>
         public void PrintAllClients()
         {
             for (int i = 0; i < clients.Count; i++)
@@ -93,6 +113,13 @@ namespace OOP_practice.Source
             }
         }
 
+        /// <summary>
+        /// Change the client info and return bool result if its done or not 
+        /// </summary>
+        /// <param name="indexOfClient"></param>
+        /// <param name="newData"></param>
+        /// <param name="clientField"></param>
+        /// <returns></returns>
         public virtual bool ChangeClientInfo(int indexOfClient, string newData, string clientField = "PhoneNumber")
         {
             if (isNewClientInfoCorrect(newData))
@@ -105,6 +132,10 @@ namespace OOP_practice.Source
 
         }
 
+        /// <summary>
+        /// return string that represents what can do this worker
+        /// </summary>
+        /// <returns></returns>
         public virtual string WhatCanIDo()
         {
             string description = $"User {this.GetType().Name} has the following abilities:\n" +

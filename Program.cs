@@ -105,6 +105,9 @@ using Newtonsoft.Json;
 using OOP_practice;
 using OOP_practice.Source;
 
+/// <summary>
+/// load the clientsDB from JSON
+/// </summary>
 List<Client> clients = new List<Client>();
 const string clientsPath = @"Employee.json";
 clients = LoadClientsFromJson();
@@ -113,7 +116,7 @@ string shutDownCommand = "";
 
 
 
-
+//main part of informational system
 while (shutDownCommand.ToLower() != "exit")
 {
     Console.WriteLine("Welcome to IS from 'A' Bank. To log in this IS. Please choose your role :\n1 - Consultant\n2 - Manager");
@@ -123,6 +126,7 @@ while (shutDownCommand.ToLower() != "exit")
     while (true)
     {
         string userRole = Console.ReadLine();
+        
         string correctUserRole = DeleteSpaceInStr(userRole);
 
         if (correctUserRole == "1" || correctUserRole == "2")
@@ -140,8 +144,11 @@ while (shutDownCommand.ToLower() != "exit")
     while (shutDownCommand.ToLower() != "e")
     {
         Console.WriteLine(worker.WhatCanIDo());
+
         string workerCommand = DeleteSpaceInStr(Console.ReadLine());
+        //begin to work with clients
         WorkerExecution(workerCommand,worker);
+
         Console.WriteLine("To return to main menu type 'e' or press Enter to continue");
         shutDownCommand = Console.ReadLine();
     }
@@ -154,22 +161,24 @@ while (shutDownCommand.ToLower() != "exit")
 
 #region Create and load clients dataBase
 //-------------------------------------------------------------------------------------------
-void CreateJson()
-{
-    string relativePath = @"Employee";
+
+//void CreateJson()
+//{
+//    string relativePath = @"Employee";
    
-    JsonSerializer serializer = new JsonSerializer();
-    serializer.NullValueHandling = NullValueHandling.Ignore;
-    using (StreamWriter sw = new StreamWriter(Path.GetFullPath(relativePath)+".json"))
-    using (JsonWriter writer = new JsonTextWriter(sw))
-    {
-        writer.Formatting = Formatting.Indented;
-        serializer.Serialize(writer, clients);
+//    JsonSerializer serializer = new JsonSerializer();
+//    serializer.NullValueHandling = NullValueHandling.Ignore;
+//    using (StreamWriter sw = new StreamWriter(Path.GetFullPath(relativePath)+".json"))
+//    using (JsonWriter writer = new JsonTextWriter(sw))
+//    {
+//        writer.Formatting = Formatting.Indented;
+//        serializer.Serialize(writer, clients);
 
-    }
+//    }
     
-}
+//}
 
+//load the clients from JSON file and returns List<Clietn>
 List<Client> LoadClientsFromJson()
 {
 
@@ -184,33 +193,35 @@ List<Client> LoadClientsFromJson()
     return client1;
 }
 
-void ReadAllClients()
-{
-    string path = @"C:\Users\funn1\source\repos\OOP_practice\employees.txt";
-    string[] file = File.ReadAllLines(path);
-    foreach (var item in file)
-    {
-        string tempstr;
-        string name = item.Substring(0, item.IndexOf(','));
-        tempstr = item.Substring(item.IndexOf(',') + 1);
-        string surname = tempstr.Substring(0, tempstr.IndexOf(','));
-        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
-        string lastname = tempstr.Substring(0, tempstr.IndexOf(','));
-        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
-        string passport = tempstr.Substring(0, tempstr.IndexOf(','));
-        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
-        string phonenumber = tempstr.Substring(0, tempstr.IndexOf(','));
+//void ReadAllClients()
+//{
+//    string path = @"C:\Users\funn1\source\repos\OOP_practice\employees.txt";
+//    string[] file = File.ReadAllLines(path);
+//    foreach (var item in file)
+//    {
+//        string tempstr;
+//        string name = item.Substring(0, item.IndexOf(','));
+//        tempstr = item.Substring(item.IndexOf(',') + 1);
+//        string surname = tempstr.Substring(0, tempstr.IndexOf(','));
+//        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
+//        string lastname = tempstr.Substring(0, tempstr.IndexOf(','));
+//        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
+//        string passport = tempstr.Substring(0, tempstr.IndexOf(','));
+//        tempstr = tempstr.Substring(tempstr.IndexOf(',') + 1);
+//        string phonenumber = tempstr.Substring(0, tempstr.IndexOf(','));
 
-        clients.Add(new Client(name, surname, lastname, passport, phonenumber));
+//        clients.Add(new Client(name, surname, lastname, passport, phonenumber));
 
 
-    }
+//    }
 
-}
+//}
 
 #endregion
 #region IS work methods
-
+/// <summary>
+/// Delete whiteSpace in incoming str.
+/// </summary>
 string DeleteSpaceInStr(string baseStr)
 {
     if (!String.IsNullOrEmpty(baseStr))
@@ -223,7 +234,9 @@ string DeleteSpaceInStr(string baseStr)
     return String.Empty;
 }
 
-
+/// <summary>
+/// check if incoming str that represents name and age of worker are correct 
+/// </summary>
 bool isWorkerDataCorrect(string userNewName, string userAgeStr)
 {
 
@@ -237,6 +250,9 @@ bool isWorkerDataCorrect(string userNewName, string userAgeStr)
     }
 }
 
+/// <summary>
+/// convert str to byte, return number or 0
+/// </summary>
 byte ConvertStrToInt(string stringToConvert, byte startRange, byte endRange)
 {
     byte convertedNumber;
@@ -251,6 +267,9 @@ byte ConvertStrToInt(string stringToConvert, byte startRange, byte endRange)
     }
 }
 
+/// <summary>
+/// get the entry data of worker and checking it until it done correctly
+/// </summary>
 void EntryWorkerData(out string workerName, out byte workerAge)
 {
     bool flag = true;
@@ -281,6 +300,9 @@ void EntryWorkerData(out string workerName, out byte workerAge)
     }
 }
 
+/// <summary>
+/// create a new worker by user choice and incoming data 
+/// </summary>
 Consultant CreateNewWorker(string userRole)
 {
     Consultant worker;
@@ -301,6 +323,9 @@ Consultant CreateNewWorker(string userRole)
     return worker;
 }
 
+/// <summary>
+/// main program to work with client information/ choose the func and execute it
+/// </summary>
 void WorkerExecution(string workerCommand, Consultant worker)
 {
 
@@ -340,7 +365,9 @@ void WorkerExecution(string workerCommand, Consultant worker)
     }
 }
 
-
+/// <summary>
+/// change the client data by field and new data despite of worker type, calling the console with the result
+/// </summary>
 void ChangeTheClientData(Consultant worker, int indexOfClient, string clientField = "PhoneNumber")
 {
     Console.WriteLine($"Input the new {clientField} of choosen client");
@@ -354,6 +381,9 @@ void ChangeTheClientData(Consultant worker, int indexOfClient, string clientFiel
 
 }
 
+/// <summary>
+/// get index from console, working until its done and returns the converted value
+/// </summary>
 byte GetIndexOfClientFromConsole(Consultant worker)
 {
     Console.WriteLine($"Please type the index of client in clentDB\nTotal clients - {worker.CountClients}\nIndex starts from 0 to {worker.CountClients - 1}");
@@ -375,6 +405,9 @@ byte GetIndexOfClientFromConsole(Consultant worker)
 
 }
 
+/// <summary>
+/// mode that rules the changing client data by its type
+/// </summary>
 void ChangeClientDataMode(byte indexOfClient, Consultant worker)
 {
     if (worker is Manager)
@@ -402,6 +435,9 @@ void ChangeClientDataMode(byte indexOfClient, Consultant worker)
     }
 }
 
+/// <summary>
+/// get new client data from console and add new user to client DB
+/// </summary>
 void AddNewClient(Manager worker)
 {
     Console.WriteLine("Add new client to clientsDB requires the following parameters:\nEnter Name");
